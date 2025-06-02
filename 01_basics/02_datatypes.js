@@ -38,3 +38,6 @@ const output = function() {
     console.log("Hello world");
     
 }
+
+// Primitive data types are stored in stack
+// Non primitive data types are stored in heap
