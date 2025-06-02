@@ -22,3 +22,19 @@ console.log(typeof temperature)
 
 // https://tc39.es/ecma262/#sec-intro
 // https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting
+
+
+// Non-primitive data types, call by reference, reference types
+// Arrays, objects, functions
+
+const heroes = ["shaktiman", "thor"]
+
+const user = {
+    name: "Yuvraj",
+    age: 29
+}
+
+const output = function() {
+    console.log("Hello world");
+    
+}
