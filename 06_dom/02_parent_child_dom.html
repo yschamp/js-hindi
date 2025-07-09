@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chai aur code</title>
+</head>
+<body style="background-color: black; color: white;">
+    <div class="parent">
+        <div class="day">Monday</div>
+        <div class="day">Tuesday</div>
+        <div class="day">Wednesday</div>
+        <div class="day">Thursay</div>
+    </div>
+</body>
+<script>
+    const parent = document.querySelector('.parent')
+
+    // Accessing all the elements of a parent node
+    const children = parent.children
+
+    // Access the first child of a parent node
+    // const firstChild = parent.children[0].innerHTML
+    const firstChild = parent.firstElementChild
+    console.log(firstChild.innerHTML);
+
+    // Accessing last element of a parent node
+    const lastChild = parent.lastElementChild.textContent
+    console.log(lastChild);
+
+    for (let i = 0; i < children.length; i++) {
+        const element = children[i];
+        element.style.color = 'orange'
+    }
+
+    // Accessing parent from a child node
+    console.log(firstChild.parentElement.innerHTML);
+    console.log(firstChild.nextElementSibling.innerHTML);
+
+
+    console.log(parent.childNodes);
+    
+    
+    
+</script>
+</html>
