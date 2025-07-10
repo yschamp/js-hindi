@@ -52,3 +52,111 @@ form.addEventListener('submit', function(e) {
   }
 })
 ```
+
+### Project 3: Clock
+
+```
+const time = document.querySelector('#clock');
+
+setInterval(function () {
+  const date = new Date().toLocaleTimeString('en-IN');
+  time.innerHTML = date;
+}, 1000);
+
+```
+
+### Project 4: Guess the number
+```
+let randomNumber = Math.floor(Math.random() * 100 + 1);
+
+const submit = document.querySelector('#subt');
+const input = document.querySelector('#guessField');
+const prevGuessList = document.querySelector('.guesses');
+const count = document.querySelector('.lastResult');
+const lowOrHigh = document.querySelector('.lowOrHi');
+const resultParams = document.querySelector('.resultParas');
+
+let prevGuess = [];
+let guessCount = 0;
+let playGame = true;
+
+if (playGame) {
+  submit.addEventListener('click', function (e) {
+    e.preventDefault();
+    console.log(randomNumber);
+    const guess = parseInt(input.value);
+    validateGuess(guess);
+  });
+}
+function validateGuess(guess) {
+  if (isNaN(guess)) {
+    displayMessage('Invalid value');
+  } else if (guess < 0) {
+    displayMessage('Number must be greater than 0');
+  } else if (guess > 100) {
+    displayMessage('Number must be lesser than 100');
+  } else {
+    prevGuess.push(guess);
+    guessCount += 1;
+    if (guessCount == 11) {
+      displayMessage('Game Over! You have exhaused all attempts');
+      endGame();
+    }
+    displayGuess(guess);
+    checkGuess(guess);
+  }
+}
+
+function checkGuess(guess) {
+  if (guess < randomNumber) {
+    displayMessage('Number is too low');
+  } else if (guess > randomNumber) {
+    displayMessage('Number is too high');
+  } else {
+    displayMessage('Congrats! You have guessed it right');
+    endGame();
+  }
+}
+function displayGuess(guess) {
+  input.value = '';
+  const rem = 10 - guessCount;
+  count.innerHTML = `${rem}`;
+  prevGuessList.innerHTML += `${guess},`;
+}
+
+function displayMessage(message) {
+  lowOrHigh.innerHTML = message;
+  if (guessCount == 10) {
+    input.setAttribute('disabled', '');
+    submit.setAttribute('disabled', '');
+    endGame();
+  }
+}
+
+function endGame() {
+  playGame = false;
+  const btn = document.createElement('button');
+  btn.innerHTML = 'Start Game';
+  btn.classList.add('btn');
+  resultParams.appendChild(btn);
+  newGame();
+}
+
+function newGame() {
+  const btn = document.querySelector('.btn');
+  btn.addEventListener('click', function (e) {
+    e.preventDefault();
+    input.removeAttribute('disabled');
+    submit.removeAttribute('disabled');
+    prevGuess = [];
+    guessCount = 0;
+    playGame = true;
+    lowOrHigh.innerHTML = '';
+    randomNumber = Math.floor(Math.random() * 100 + 1);
+    prevGuessList.innerHTML = '';
+    count.innerHTML = '10';
+    resultParams.removeChild(btn);
+  });
+}
+
+```
