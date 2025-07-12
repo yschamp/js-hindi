@@ -160,3 +160,62 @@ function newGame() {
 }
 
 ```
+
+### Project 5: Keyboard key 
+
+```
+const insert = document.getElementById('insert');
+
+window.addEventListener('keydown', function (e) {
+  insert.innerHTML = `
+  <table>
+  <tr>
+    <th>Key</th>
+    <th>KeyCode</th>
+    <th>Code</th>
+  </tr>
+  <tr>
+    <td>${e.key}</td>
+    <td>${e.keyCode}</td>
+    <td>${e.code}</td>
+  </tr>
+  </table>
+  `;
+});
+
+```
+
+### Project 6: Change background every second
+
+```
+// get a random color
+function randomColor() {
+  const hex = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    const idx = Math.floor(Math.random() * 16);
+    color = color + hex.charAt(idx);
+  }
+  return color;
+}
+
+// add click event listener on start and setInterval
+const start = document.getElementById('start');
+const stop = document.getElementById('stop');
+const body = document.querySelector('body');
+
+let id;
+start.addEventListener('click', function () {
+  id = setInterval(function () {
+    let color = randomColor();
+    body.style.backgroundColor = color;
+  }, 1000);
+});
+
+// add click event listener on stop and
+// clearInterval
+stop.addEventListener('click', function () {
+  clearInterval(id);
+});
+
+```

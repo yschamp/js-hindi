@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Code and javascript</h1>
+    <!-- <button id="stop-timeout"> Stop timeout </button> -->
+    <button id="start-interval"> Start Interval </button>
+    <button id="stop-interval"> Stop Interval </button>
+
+</body>
+<script>
+    const printMe = function(name){
+        console.log(`Hi ${name}`, Date.now())
+    }
+    // const timeoutRef = setTimeout(printMe, 2000, "Yuvi")
+
+    // document.getElementById('stop-timeout').addEventListener('click', function(){
+    //     clearTimeout(timeoutRef)
+    // }, false)
+
+    let intervalId
+    document.getElementById('start-interval').addEventListener('click', function(){
+        intervalId = setInterval(printMe, 1000, 'Interval')
+    }, false)
+
+    document.getElementById('stop-interval').addEventListener('click', function(){
+        clearInterval(intervalId)
+    }, false)
+
+</script>
+</html>

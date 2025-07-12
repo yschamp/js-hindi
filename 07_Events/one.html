@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events in Javascript</title>
+</head>
+<body style="background-color: rgb(37, 35, 35); color: aliceblue;">
+    <h2>Amazing image</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
+</body>
+</html>
+
+<script>
+    // There are three ways in which we can attach an event listener to a particular element
+    // in JS:
+
+    // 1. Add onClick event in HTML 
+    // <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" onclick="alert('Prayer')"></li>
+    // Cons: This approach is not scalable and deprecates your apps performance as HTML file size increases
+    // Also try to add logic in script rather than HTML
+
+    //2 . This approach limited information about an event
+    // document.getElementById('owl').onclick = function(){
+    //     alert('owl click')
+    // }
+
+    // Internet Explorer -  attachEvent
+    // JQuery - onEvent
+
+    // currenttarget - Element on which the event is attached
+    // target - Element on which this event is fired, it can also be parents' child
+    // bubbling -> events fires its parent elements event from bottom to top
+    // {capture: true} -> events fires its child elements event from top to bottom 
+    // stopPropogation - prevents default propogation
+    // ClientX, ScreenX
+    // ctrlKey, ShiftKey, keyCode
+
+    // 2 Types of events:
+    // Bubbling - child element event gets fired first and then propogates to parent -> addEventListener(type, callback, false)
+    // Capturing - parent element event gets first first and then propogates to child -> addEventListener(type, callback, true)
+
+    // Default propogation - Bubbling
+        // document.getElementById('images').addEventListener('click', function(e){
+        //     console.log('Images clicked')
+        // }, false)
+        // document.getElementById('owl').addEventListener('click', function(e){
+        //     // console.log(e)
+        //     console.log('owl clicked')
+        // }, false)
+
+    // Output
+        // owl clicked
+        // Images clicked
+
+
+    // Capturing propogation 
+    // document.getElementById('images').addEventListener('click', function(e){
+    //     console.log('Images clicked')
+    // }, true)
+    // document.getElementById('owl').addEventListener('click', function(e){
+    //     // console.log(e)
+    //     console.log('owl clicked')
+    // }, true)
+
+    // Output
+    // Images clicked
+    // owl clicked
+
+
+    // document.getElementById('google').addEventListener('click', function(e){
+    //     e.preventDefault()
+    //     e.stopPropagation()
+    // }, false)
+
+    const ul = document.querySelector('#images')
+    ul.addEventListener('click', function(e){
+        console.log(e.target.tagName)
+        const element = e.target.parentNode
+        if(e.target.tagName === 'IMG'){
+            element.remove()
+        }
+    }, true)
+
+
+</script>
